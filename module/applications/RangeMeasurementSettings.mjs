@@ -68,11 +68,11 @@ export class RangeMeasurementSettings extends FormApplication {
 	async _onReset(event) {
 		event.preventDefault();
 		await game.settings.set('daggerheart-unofficial', 'rangeMeasurementEnabled', true);
-		await game.settings.set('daggerheart-unofficial', 'rangeMeasurementMelee', 5);
-		await game.settings.set('daggerheart-unofficial', 'rangeMeasurementVeryClose', 15);
-		await game.settings.set('daggerheart-unofficial', 'rangeMeasurementClose', 30);
-		await game.settings.set('daggerheart-unofficial', 'rangeMeasurementFar', 60);
-		await game.settings.set('daggerheart-unofficial', 'rangeMeasurementVeryFar', 120);
+		await game.settings.set('daggerheart-unofficial', 'rangeMeasurementMelee', 1);
+		await game.settings.set('daggerheart-unofficial', 'rangeMeasurementVeryClose', 3);
+		await game.settings.set('daggerheart-unofficial', 'rangeMeasurementClose', 6);
+		await game.settings.set('daggerheart-unofficial', 'rangeMeasurementFar', 12);
+		await game.settings.set('daggerheart-unofficial', 'rangeMeasurementVeryFar', 18);
 
 		await game.settings.set('daggerheart-unofficial', 'hoverDistanceVerticalMode', 'useCoreRuler');
 		await game.settings.set('daggerheart-unofficial', 'hoverDistanceRounding', 0);

@@ -361,7 +361,7 @@ Hooks.once('init', async function () {
 		scope: 'world',
 		config: false,
 		type: Number,
-		default: 5,
+		default: 1,
 		restricted: true,
 	});
 
@@ -371,7 +371,7 @@ Hooks.once('init', async function () {
 		scope: 'world',
 		config: false,
 		type: Number,
-		default: 15,
+		default: 3,
 		restricted: true,
 	});
 
@@ -381,7 +381,7 @@ Hooks.once('init', async function () {
 		scope: 'world',
 		config: false,
 		type: Number,
-		default: 30,
+		default: 6,
 		restricted: true,
 	});
 
@@ -391,7 +391,7 @@ Hooks.once('init', async function () {
 		scope: 'world',
 		config: false,
 		type: Number,
-		default: 60,
+		default: 12,
 		restricted: true,
 	});
 
@@ -401,7 +401,7 @@ Hooks.once('init', async function () {
 		scope: 'world',
 		config: false,
 		type: Number,
-		default: 120,
+		default: 18,
 		restricted: true,
 	});
 
