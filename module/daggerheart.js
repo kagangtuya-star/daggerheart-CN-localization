@@ -213,8 +213,10 @@ Hooks.once('init', async function () {
 	CONFIG.Actor.trackableAttributes = CONFIG.Actor.trackableAttributes || {};
 	for (const t of ['character', 'npc', 'companion', 'environment']) {
 		CONFIG.Actor.trackableAttributes[t] = CONFIG.Actor.trackableAttributes[t] || {};
-		const existing = CONFIG.Actor.trackableAttributes[t].bar || [];
-		CONFIG.Actor.trackableAttributes[t].bar = Array.from(new Set([...existing, 'barHealth', 'barStress', 'barArmor']));
+		const bar = CONFIG.Actor.trackableAttributes[t].bar || [];
+		const value = CONFIG.Actor.trackableAttributes[t].value || [];
+		CONFIG.Actor.trackableAttributes[t].bar = Array.from(new Set([...bar, 'barHealth', 'barStress', 'barArmor']));
+		CONFIG.Actor.trackableAttributes[t].value = Array.from(new Set([...value]));
 	}
 
 	// Register custom canvas classes for range measurement

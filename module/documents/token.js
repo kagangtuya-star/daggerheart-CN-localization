@@ -31,6 +31,27 @@ export class SimpleTokenDocument extends TokenDocument {
 		}
 		return super.getTrackedAttributes(data);
 	}
+
+	static getTrackedAttributeChoices(attributes) {
+		const data = super.getTrackedAttributeChoices(attributes);
+		data.forEach(entry => {
+			switch (entry.value) {
+				case 'barStress':
+					entry.label = game.i18n.localize('DH.StressBar');
+					break;
+				case 'barHealth':
+					entry.label = game.i18n.localize('DH.HealthBar');
+					break;
+				case 'barArmor':
+					entry.label = game.i18n.localize('DH.ArmorBar');
+					break;
+				default:
+					console.warn('Daggerheart Token: unkown attribute label');
+					break;
+			}
+		});
+		return data;
+	}
 }
 
 /* -------------------------------------------- */
