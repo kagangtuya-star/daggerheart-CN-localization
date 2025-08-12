@@ -325,6 +325,36 @@ Hooks.once('init', async function () {
 		restricted: true,
 	});
 
+	game.settings.register('daggerheart-unofficial', 'hoverDistanceVerticalMode', {
+		name: 'DAGGERHEART.SETTINGS.Hover.Distance.Vertical.mode',
+		hint: "Define how vertical distance is computed ('useCoreRuler', 'useHighest', 'euclidean', 'ignore')",
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'ignore',
+		restricted: true,
+	});
+
+	game.settings.register('daggerheart-unofficial', 'hoverDistanceRounding', {
+		name: 'DAGGERHEART.CONFIG.Hover.Distance.Rounding.value',
+		hint: 'Distance threshold for Melee range (in grid units)',
+		scope: 'world',
+		config: false,
+		type: Number,
+		default: 0,
+		restricted: true,
+	});
+
+	game.settings.register('daggerheart-unofficial', 'hoverDistanceComplexityThreshold', {
+		name: 'DAGGERHEART.CONFIG.Hover.Distance.Complexity.Threshold.value',
+		hint: 'Distance threshold for Melee range (in grid units)',
+		scope: 'world',
+		config: false,
+		type: Number,
+		default: 400,
+		restricted: true,
+	});
+
 	game.settings.register('daggerheart-unofficial', 'rangeMeasurementMelee', {
 		name: 'DAGGERHEART.CONFIG.Range.melee.name',
 		hint: 'Distance threshold for Melee range (in grid units)',
@@ -365,13 +395,13 @@ Hooks.once('init', async function () {
 		restricted: true,
 	});
 
-	game.settings.register('daggerheart-unofficial', 'rangeMeasurementMelee', {
-		name: 'DAGGERHEART.CONFIG.Range.melee.name',
-		hint: 'Distance threshold for Melee range (in grid units)',
+	game.settings.register('daggerheart-unofficial', 'rangeMeasurementVeryFar', {
+		name: 'DAGGERHEART.CONFIG.Range.veryFar.name',
+		hint: 'Distance threshold for Very Far range (in grid units)',
 		scope: 'world',
 		config: false,
 		type: Number,
-		default: 5,
+		default: 120,
 		restricted: true,
 	});
 
