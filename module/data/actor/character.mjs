@@ -74,12 +74,12 @@ export default class CharacterData extends ActorBase.mixin(
 			level: new ValueField({ min: 1, max: 10, value: 1 }),
 			proficiency: new ValueField({ min: 1, max: 10, value: 1 }),
 
-			agility: new LeveledModifierField({ min: -5, max: 5 }),
-			strength: new LeveledModifierField({ min: -5, max: 5 }),
-			finesse: new LeveledModifierField({ min: -5, max: 5 }),
-			instinct: new LeveledModifierField({ min: -5, max: 5 }),
-			presence: new LeveledModifierField({ min: -5, max: 5 }),
-			knowledge: new LeveledModifierField({ min: -5, max: 5 }),
+			agility: new LeveledModifierField({ min: -5, positive: false }),
+			strength: new LeveledModifierField({ min: -5, positive: false }),
+			finesse: new LeveledModifierField({ min: -5, positive: false }),
+			instinct: new LeveledModifierField({ min: -5, positive: false }),
+			presence: new LeveledModifierField({ min: -5, positive: false }),
+			knowledge: new LeveledModifierField({ min: -5, positive: false }),
 
 			'weapon-off': new WeaponSlotField(),
 			'weapon-main': new WeaponSlotField(),

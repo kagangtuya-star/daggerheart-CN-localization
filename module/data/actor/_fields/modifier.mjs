@@ -48,17 +48,17 @@ export class LeveledModifierField extends SchemaField {
 	constructor(options = {}, schemaOptions = {}) {
 		const fields = {
 			value: new NumberField({
-				min: 0,
+				min: options.min | 0,
 				integer: true,
 				required: true,
-				positive: false,
+				positive: options.positive | false,
 				initial: 0,
 			}),
 			baseValue: new NumberField({
-				min: 0,
+				min: options.min | 0,
 				integer: true,
 				required: true,
-				positive: false,
+				positive: options.positive | false,
 				initial: 0,
 			}),
 			// TODO Migrate the original typo
@@ -83,17 +83,17 @@ export class ModifiedNumberField extends SchemaField {
 	constructor(options = {}, schemaOptions = {}) {
 		const fields = {
 			value: new NumberField({
-				min: 0,
+				min: options.min | 0,
 				integer: true,
 				required: true,
-				positive: false,
+				positive: options.positive | false,
 				initial: 0,
 			}),
 			baseValue: new NumberField({
-				min: 0,
+				min: options.min | 0,
 				integer: true,
 				required: true,
-				positive: false,
+				positive: options.positive | false,
 				initial: 0,
 			}),
 			modifiers: new ArrayField(new ModifierField()),
