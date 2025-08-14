@@ -32,35 +32,40 @@ export class SimpleTokenDocument extends TokenDocument {
 		return super.getTrackedAttributes(data);
 	}
 
-	static getTrackedAttributeChoices(attributes, model) {
-		attributes = attributes || this.getTrackedAttributes();
-		const barGroupLabel = game.i18n.localize('TOKEN.BarAttributes');
-		const valueGroupLabel = game.i18n.localize('TOKEN.BarValues');
-
-		const barEntries = Array.isArray(attributes?.bar)
-			? attributes.bar.map(pathSegments => {
-				const joinedPath = pathSegments.join('.');
-				const schemaFieldLabel = model ? game.i18n.localize(model.schema.getField(`${joinedPath}.value`)?.label ?? '') : null;
-				return { group: barGroupLabel, value: joinedPath, label: schemaFieldLabel || joinedPath };
-			})
-			: [];
-		barEntries.sort((a, b) => a.label?.localeCompare(b.label) ?? 0);
-
-
-		const valueEntries = Array.isArray(attributes?.value)
-			? attributes.value.reduce((accumulated, pathSegments) => {
-				const joinedPath = pathSegments.join('.');
-
-				const field = model ? model.schema.getField(joinedPath) : null;
-				const label = field ? game.i18n.localize(field.label) : joinedPath;
-				const hint = field ? game.i18n.localize(field.hint) : null;
-				accumulated.push({ group: valueGroupLabel, value: joinedPath, label, hint });
-				return accumulated;
-			}, [])
-			: [];
-		valueEntries.sort((a, b) => a.label?.localeCompare(b.label) ?? 0);
-
-		return barEntries.concat(valueEntries);
+	static getTrackedAttributeChoices(attributes) {
+		const data = super.getTrackedAttributeChoices(attributes);
+		data.forEach(entry => {
+			switch (entry.value) {
+				case 'hope':
+					entry.label = game.i18n.localize('DH.Hope');
+					break;
+				case 'armor':
+					entry.label = game.i18n.localize('DH.Armor');
+					break;
+				case 'stress':
+					entry.label = game.i18n.localize('DH.Stress');
+					break;
+				case 'health':
+					entry.label = game.i18n.localize('DH.Health');
+					break;
+				case 'hopeBar':
+					entry.label = game.i18n.localize('DH.HopeBar');
+					break;
+				case 'armorBar':
+					entry.label = game.i18n.localize('DH.ArmorBar');
+					break;
+				case 'stressBar':
+					entry.label = game.i18n.localize('DH.StressBar');
+					break;
+				case 'healthBar':
+					entry.label = game.i18n.localize('DH.HealthBar');
+					break;
+				default:
+					console.warn('Daggerheart Token: unkown attribute label');
+					break;
+			}
+		});
+		return data;
 	}
 }
 
