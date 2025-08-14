@@ -31,6 +31,37 @@ export class SimpleTokenDocument extends TokenDocument {
 		}
 		return super.getTrackedAttributes(data);
 	}
+
+	static getTrackedAttributeChoices(attributes, model) {
+		attributes = attributes || this.getTrackedAttributes();
+		const barGroupLabel = game.i18n.localize('TOKEN.BarAttributes');
+		const valueGroupLabel = game.i18n.localize('TOKEN.BarValues');
+
+		const barEntries = Array.isArray(attributes?.bar)
+			? attributes.bar.map(pathSegments => {
+				const joinedPath = pathSegments.join('.');
+				const schemaFieldLabel = model ? game.i18n.localize(model.schema.getField(`${joinedPath}.value`)?.label ?? '') : null;
+				return { group: barGroupLabel, value: joinedPath, label: schemaFieldLabel || joinedPath };
+			})
+			: [];
+		barEntries.sort((a, b) => a.label?.localeCompare(b.label) ?? 0);
+
+
+		const valueEntries = Array.isArray(attributes?.value)
+			? attributes.value.reduce((accumulated, pathSegments) => {
+				const joinedPath = pathSegments.join('.');
+
+				const field = model ? model.schema.getField(joinedPath) : null;
+				const label = field ? game.i18n.localize(field.label) : joinedPath;
+				const hint = field ? game.i18n.localize(field.hint) : null;
+				accumulated.push({ group: valueGroupLabel, value: joinedPath, label, hint });
+				return accumulated;
+			}, [])
+			: [];
+		valueEntries.sort((a, b) => a.label?.localeCompare(b.label) ?? 0);
+
+		return barEntries.concat(valueEntries);
+	}
 }
 
 /* -------------------------------------------- */

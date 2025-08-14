@@ -46,7 +46,8 @@ function ensureContainer(token) {
 		token.sortableChildren = true;
 		token.addChild(token.hoverDistanceContainer);
 		if (token.parent) token.parent.sortableChildren = true;
-		token.hoverDistanceContainer.zIndex = 999999;
+		token.hoverDistanceContainer.zIndex = 9999999;
+		token.hoverDistanceContainer.sortableChildren = true;
 	}
 	return token.hoverDistanceContainer;
 }
@@ -85,13 +86,22 @@ function drawTooltip(token, text) {
 	bg.beginFill(darkBlue, 0.7);
 	bg.drawRoundedRect(0, 0, bgW, bgH, Math.min(10, Math.floor(fontSize * 0.6)));
 	bg.endFill();
+	bg.zIndex = 9999999;
 	label.x = Math.floor((bgW - label.width) / 2);
 	label.y = Math.floor((bgH - label.height) / 2);
+	label.zIndex = 9999999;
 	container.addChild(bg);
 	container.addChild(label);
 	const offset = Math.max(10, Math.floor(fontSize * 0.35));
 	container.x = Math.round((token.w - bgW) / 2);
-	container.y = Math.round(-bgH - offset);
+	
+	const tooltipPosition = game.settings.get('daggerheart-unofficial', 'hoverDistanceTooltipPosition');
+	if (tooltipPosition === 'below') {
+		container.y = Math.round(token.h + offset);
+	} else {
+		container.y = Math.round(-bgH - offset);
+	}
+	
 	container.roundPixels = true;
 }
 

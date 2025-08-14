@@ -355,6 +355,19 @@ Hooks.once('init', async function () {
 		restricted: true,
 	});
 
+	game.settings.register('daggerheart-unofficial', 'hoverDistanceTooltipPosition', {
+		name: 'DAGGERHEART.SETTINGS.HoverDistance.tooltipPosition',
+		hint: 'DAGGERHEART.SETTINGS.HoverDistance.tooltipPositionHint',
+		scope: 'client',
+		config: true,
+		type: String,
+		choices: {
+			'above': 'DAGGERHEART.SETTINGS.HoverDistance.tooltipPositionAbove',
+			'below': 'DAGGERHEART.SETTINGS.HoverDistance.tooltipPositionBelow'
+		},
+		default: 'above',
+	});
+
 	game.settings.register('daggerheart-unofficial', 'rangeMeasurementMelee', {
 		name: 'DAGGERHEART.CONFIG.Range.melee.name',
 		hint: 'Distance threshold for Melee range (in grid units)',

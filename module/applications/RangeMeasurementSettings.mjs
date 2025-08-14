@@ -25,6 +25,7 @@ export class RangeMeasurementSettings extends FormApplication {
 		context.verticalMode = game.settings.get('daggerheart-unofficial', 'hoverDistanceVerticalMode');
 		context.rounding = game.settings.get('daggerheart-unofficial', 'hoverDistanceRounding');
 		context.complexityThreshold = game.settings.get('daggerheart-unofficial', 'hoverDistanceComplexityThreshold');
+		context.tooltipPosition = game.settings.get('daggerheart-unofficial', 'hoverDistanceTooltipPosition');
 
 		context.verticalModeChoices = {
 			useCoreRuler: 'Use Core Ruler (Faithful to Foundry)',
@@ -55,6 +56,11 @@ export class RangeMeasurementSettings extends FormApplication {
 			'hoverDistanceComplexityThreshold',
 			Number(formData.complexityThreshold ?? 400)
 		);
+		await game.settings.set(
+			'daggerheart-unofficial',
+			'hoverDistanceTooltipPosition',
+			formData.tooltipPosition ?? 'above'
+		);
 
 		ui.notifications.info(game.i18n.localize('DAGGERHEART.SETTINGS.RangeMeasurement.saved'));
 	}
@@ -77,6 +83,7 @@ export class RangeMeasurementSettings extends FormApplication {
 		await game.settings.set('daggerheart-unofficial', 'hoverDistanceVerticalMode', 'useCoreRuler');
 		await game.settings.set('daggerheart-unofficial', 'hoverDistanceRounding', 0);
 		await game.settings.set('daggerheart-unofficial', 'hoverDistanceComplexityThreshold', 400);
+		await game.settings.set('daggerheart-unofficial', 'hoverDistanceTooltipPosition', 'above');
 
 		await this.render();
 	}

@@ -56,6 +56,15 @@
     <p class="notes">Performance threshold for switching to simpler measurement (larger = more detailed)</p>
   </section>
 
+  <section class="form-group">
+    <label>{{localize "DAGGERHEART.SETTINGS.HoverDistance.tooltipPosition"}}</label>
+    <select name="tooltipPosition">
+      <option value="above" {{#if (eq tooltipPosition "above")}}selected{{/if}}>{{localize "DAGGERHEART.SETTINGS.HoverDistance.tooltipPositionAbove"}}</option>
+      <option value="below" {{#if (eq tooltipPosition "below")}}selected{{/if}}>{{localize "DAGGERHEART.SETTINGS.HoverDistance.tooltipPositionBelow"}}</option>
+    </select>
+    <p class="notes">{{localize "DAGGERHEART.SETTINGS.HoverDistance.tooltipPositionHint"}}</p>
+  </section>
+
   <footer class="sheet-footer flexrow">
     <button type="button" data-action="reset">
       <i class="fas fa-undo"></i> {{localize "DAGGERHEART.SETTINGS.DiceCustomization.reset"}}
