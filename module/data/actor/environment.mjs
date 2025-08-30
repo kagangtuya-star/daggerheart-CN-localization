@@ -4,7 +4,7 @@
 import { ActorBase } from '../_base/actor-base.mjs';
 
 import { RefrenceField } from './_fields/refrence.mjs';
-import { ModifiedNumberField } from './_fields/modifier.mjs';
+import { ModifiedNumberField } from '../_fields/modifier.mjs';
 
 import { ActorTrackerData } from './_templates/actor-tracker.mjs';
 

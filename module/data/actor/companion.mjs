@@ -6,7 +6,7 @@ import { ActorBase } from '../_base/actor-base.mjs';
 
 import { ValueField } from './_fields/value.mjs';
 import { WeaponSlotField } from './_fields/weapon-slot.mjs';
-import { ModifiedNumberField } from './_fields/modifier.mjs';
+import { ModifiedNumberField } from '../_fields/modifier.mjs';
 
 import { ActorTrackerData } from './_templates/actor-tracker.mjs';
 import { ActorExperienceData } from './_templates/actor-experience.mjs';

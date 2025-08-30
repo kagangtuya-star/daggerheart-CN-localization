@@ -1,6 +1,5 @@
-import { ModifiedStringField, ModifiedNumberField } from './modifier.mjs';
-
-const { ArrayField, NumberField, SchemaField, StringField } = foundry.data.fields;
+import { ModifiedStringField } from '../../_fields/modifier.mjs';
+const { SchemaField, StringField } = foundry.data.fields;
 
 /**
  * Data model for tracking resources.

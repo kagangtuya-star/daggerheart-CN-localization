@@ -26,7 +26,7 @@ import { ActorBase } from '../_base/actor-base.mjs';
 
 import { ValueField } from './_fields/value.mjs';
 import { WeaponSlotField } from './_fields/weapon-slot.mjs';
-import { ModifiedNumberField, LeveledModifierField } from './_fields/modifier.mjs';
+import { ModifiedNumberField, LeveledModifierField } from '../_fields/modifier.mjs';
 
 import { ActorTrackerData } from './_templates/actor-tracker.mjs';
 import { ActorDefensesData } from './_templates/actor-defenses.mjs';
@@ -51,7 +51,7 @@ export default class CharacterData extends ActorBase.mixin(
 			age: new StringField({
 				blank: true,
 				required: true,
-				initial: "6",
+				initial: '6',
 			}),
 			pronouns: new StringField({
 				blank: true,

@@ -1,4 +1,4 @@
-import { ModifiedNumberField } from '../_fields/modifier.mjs';
+import { ModifiedNumberField } from '../../_fields/modifier.mjs';
 
 const { NumberField, SchemaField } = foundry.data.fields;
 const { TypeDataModel } = foundry.abstract;
