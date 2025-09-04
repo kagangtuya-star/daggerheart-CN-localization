@@ -2,12 +2,10 @@ import { SimpleItem } from './documents/item.js';
 import { SimpleActor } from './documents/actor.js';
 import { SimpleToken, SimpleTokenDocument } from './documents/token.js';
 
-import { SimpleItemSheet } from './applications/item-sheet.js';
-import { SimpleWeaponSheet } from './applications/weapon-sheet.js';
-import { SimpleArmorSheet } from './applications/armor-sheet.js';
 import { SimpleActorSheet, NPCActorSheet } from './applications/actor-sheet.js';
 import { CompanionActorSheet } from './applications/actor-sheet-companion.js';
 import { EnvironmentActorSheet } from './applications/actor-sheet-environment.js';
+
 import { loadTemplates, registerPartials } from './helpers/templates.js';
 import {
 	createDaggerheartMacro,
@@ -308,7 +306,7 @@ Hooks.once('init', async function () {
 		label: 'SHEET.Item.weapon',
 	});
 	// Keep these here as a fall back and test case while we move a head to depricate these items
-	foundry.documents.collections.Items.registerSheet('daggerheart-unofficial', SimpleItemSheet, {
+	foundry.documents.collections.Items.registerSheet('daggerheart-unofficial', itemSheet.base, {
 		types: ['worn', 'vault', 'inventory'],
 		makeDefault: true,
 		label: 'SHEET.Item.default',
