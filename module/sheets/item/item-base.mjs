@@ -1,13 +1,12 @@
-import { buildItemCardChat } from '../../helpers/helper.js';
 import { ResourcesPanel } from '../utility/panel-resources.mjs';
 import { PanelManager } from '../utility/panel-manager.mjs';
+import { buildItemCardChat } from '../../helpers/helper.js';
 import { path } from '../../helpers/templates.js';
 
 const { api, sheets } = foundry.applications;
 
 export class ItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheetV2) {
 	_panels = null;
-
 	_resources = null;
 
 	static DEFAULT_OPTIONS = {
@@ -70,6 +69,7 @@ export class ItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.ItemShe
 				resources: {
 					id: this._resources.element_id,
 					icon: 'fas fa-stopwatch',
+					show: true,
 				},
 			},
 		});
@@ -96,30 +96,24 @@ export class ItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.ItemShe
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
 
-		// Debug Logs
-		// console.log('-- _prepareContext: Super --');
-		// console.log(this);
-		// console.log(context);
-
+		// A unique lookup id
 		context.id = this.item.id;
+		// Name the content partial
+		context.content = 'item-base';
 
 		context.item = this.item;
 		context.system = this.item.system;
 
-		context.descriptionHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+		context.panels = this._panels.state;
+		context.resources = this._resources.state;
+
+		context.description = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
 			this.item.system.description,
 			{
 				secrets: this.document.isOwner,
 				async: true,
 			}
 		);
-
-		context.panels = this._panels.state;
-		context.resources = this._resources.state;
-
-		// Debug Logs
-		// console.log('-- _prepareContext: final --');
-		// console.log(context);
 
 		return context;
 	}
@@ -187,7 +181,7 @@ export class ItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.ItemShe
 			current: this.item.img,
 			callback: path => {
 				this.item.update({
-					img: path
+					img: path,
 				});
 			},
 			top: this.position.top + 40,

@@ -1,0 +1,96 @@
+<div id="panel-damage-{{id}}" class="panel-content tracker{{#if panels.visible.damage}} show{{/if}}">
+	<div class="header">
+		<span>Damage Setup</span>
+		<button data-action="panel-close">
+			<i class="fas fa-times"></i>
+		</button>
+	</div>
+	<div class="content">
+		<legend class="col-flex">Base Formula</legend>
+		<div class="grid">
+			<input 
+				type="text" 
+				name="damage-base-value"
+				class="damage-base-value col-flex"
+				placeholder="provide a damage formula"
+				value="{{system.damage.baseValue}}" />
+		</div>
+		{{!-- Fixed Modifier Values --}}
+		{{#if system.damage.permanentModifiers.length}}
+		<legend>Fixed Modifiers</legend>
+		<div class="grid">
+			{{#each system.damage.permanentModifiers}}
+			<input
+				type="text"
+				value="{{this.name}}"
+				class="disabled col-1-4"
+				name="damage-permanent-name" />
+			<input
+				type="text"
+				value="{{this.value}}"
+				class="disabled col-5-1"
+				name="damage-permanent-value" />
+			<div class="col-6-1 row">
+				<input
+					type="checkbox"
+					class="shift-right"
+					data-index="{{@index}}"
+					name="damage-modifier-enabled"
+					{{#if this.enabled}}checked{{/if}}/>
+			</div>
+			{{/each}}
+		</div>
+		{{/if}}
+		{{!-- Base Modifier Values --}}
+		<div class="grid">
+			<legend class="col-1-5">Extra Modifiers</legend>
+			<div class="col-6-1">
+				<button 
+					type="button"
+					class="shift-right"
+					data-action="create-modifier">
+					<i class="fas fa-plus"></i>
+				</button>
+			</div>
+
+		</div>
+
+		<div class="scroll">
+			<div class="grid">
+				{{#each system.damage.modifiers}}
+					<input
+						type="text"
+						class="col-1-3"
+						value="{{this.name}}"
+						data-index="{{@index}}"
+						name="damage-modifier-name" />
+					<input
+						type="text"
+						class="col-4-2"
+						value="{{this.value}}"
+						data-index="{{@index}}"
+						name="damage-modifier-value" />
+
+					<div class="col-6-1 row">
+						<input
+							type="checkbox"
+							class="shift-right"
+							data-index="{{@index}}"
+							name="damage-modifier-enabled"
+							{{#if this.enabled}}checked{{/if}}/>
+						<button
+							class="shift-right"
+							data-index="{{@index}}"
+							data-action="delete-modifier">
+							<i class="fas fa-times no-click"></i>
+						</button>
+					</div>
+				{{/each}}
+			</div>
+		</div>
+
+		<div class="grid total-damage">
+			<span class="col-flex">{{system.damage.value}}</span>
+		</div>
+	</div>
+</div>

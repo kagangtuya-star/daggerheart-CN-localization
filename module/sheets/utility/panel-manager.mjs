@@ -1,4 +1,4 @@
-// Manage the slide out an editor, menus, and tabs
+// Manage slide out actions, panels, and menus
 export class PanelManager {
 	_id = null;
 	_sheet = null;
@@ -6,20 +6,32 @@ export class PanelManager {
 
 	_idMenu = null;
 
-	_showMenu = true;
-	_showPanel = false;
-
 	_panels = {};
 	_actions = {};
 
+	_showMenu = true;
+	_showPanel = false;
+
+	get list() {
+		return Object.keys(this._panels).reduce((result, key) => {
+			const panel = this._panels[key];
+			if (!panel.show) return result;
+			result[key] = panel;
+			return result;
+		}, {});
+	}
+
 	get state() {
-		// TODO showPanel needs to be specific per panel
 		return {
-			list: { ...this._panels },
+			list: this.list,
 			state: {
 				showMenu: this._showMenu,
 				showPanel: this._showPanel,
 			},
+			visible: Object.keys(this._panels).reduce((result, key) => {
+				result[key] = this._panel === key;
+				return result;
+			}, {}),
 		};
 	}
 
@@ -30,6 +42,26 @@ export class PanelManager {
 		this._panels = options.panels;
 
 		this._idMenu = `panel-menu-${this._id}`;
+	}
+
+	open(key) {
+		// If we have a panel close it
+		if (this._showPanel) this._closePanel();
+		// Then try to open the new panel and close the menu
+		// else we ensure that the menu is actualy visable again
+		this._openPanel(key) ? this._closeMenu() : this._openMenu();
+	}
+
+	close() {
+		// If a panel is visible, then we will
+		// hide it before opening the menu
+		if (!this._showPanel) return;
+		return this._openMenu();
+	}
+
+	register(data) {
+		// Note: we do not verify data so be wise
+		this._panels = mergeObject(this._panels, data);
 	}
 
 	async onKeydown(event) {
@@ -54,23 +86,8 @@ export class PanelManager {
 		this.close();
 	}
 
-	open(key) {
-		// If we have a panel close it
-		if (this._showPanel) this._closePanel();
-		// Then try to open the new panel and close the menu
-		// else we ensure that the menu is actualy visable again
-		this._openPanel(key) ? this._closeMenu() : this._openMenu();
-	}
-
-	close() {
-		// If a panel is open, we open the menu
-		// and in the proces hide the panel
-		if (!this._showPanel) return;
-		return this._openMenu();
-	}
-
 	_openMenu() {
-		// When opening the menu we hide all panels
+		// If opening the menu hide the panel
 		if (this._showPanel) this._closePanel();
 		document.getElementById(this._idMenu).classList.add('show');
 
@@ -78,7 +95,7 @@ export class PanelManager {
 	}
 
 	_closeMenu() {
-		// Only if we have no pannel and the menu is up
+		// If there is no pannel and the menu is open
 		if (!this._showPanel || !this._showMenu) return;
 		document.getElementById(this._idMenu).classList.remove('show');
 
@@ -101,5 +118,6 @@ export class PanelManager {
 		document.getElementById(panel.id).classList.remove('show');
 
 		this._showPanel = false;
+		this._panel = null;
 	}
 }

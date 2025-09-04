@@ -4,29 +4,36 @@
 
 		min-width: 320px;
 		min-height: 480px;
+	}
 
-		.title-box {
-			position: relative;
-			overflow: hidden;
-			flex: 1;
-			width: 100%;
-			min-height: 14em;
-			max-height: 16em;
+	.uo.item.armor,
+	.uo.item.weapon {
+		min-height: 580px;
+	}
 
-			&::after {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: -2px; // Fix flicker on resize, set to -2px
-				background: linear-gradient(to top, var(--uo-bg-darker) 0%, var(--uo-bg-invisible) 60%);
-				z-index: 1;
-				pointer-events: none;
-			}
+	.uo.item .title-box {
+		position: relative;
+		overflow: hidden;
+		flex: 1;
+		width: 100%;
+		min-height: 14em;
+		max-height: 16em;
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: -2px; // Fix flicker on resize, set to -2px
+			background: linear-gradient(to top, var(--uo-bg-darker) 0%, var(--uo-bg-invisible) 60%);
+			z-index: 1;
+			pointer-events: none;
 		}
+	}
 
-		.title-box img {
+	.uo.item .title-box {
+		img {
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -34,26 +41,26 @@
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
-			transition: all 0.3s ease;
+			transition: var(--uo-transition-base);
 		}
 
-		.title-box input {
+		input {
 			position: absolute;
 			bottom: 0;
 			z-index: 2;
 
 			width: 90%;
-			margin: 16px;
-			padding: 6px;
+			margin: var(--uo-space-xl);
+			padding: var(--uo-space-sm);
 
-			font-size: 1.8em;
-			font-weight: bold;
-			min-height: 1.65em;
+			font-size: var(--uo-font-size-4xl);
+			min-height: var(--uo-font-size-3xl);
+			font-weight: var(--uo-font-weight-lg);
 
 			outline: none;
 			box-shadow: none;
 			background: none;
-			transition: all 0.3s ease;
+			transition: var(--uo-transition-base);
 
 			color: var(--uo-text-accent);
 			text-shadow: 2px 2px 4px var(--uo-text-shadow);
@@ -70,49 +77,183 @@
 				border-bottom: 1px solid var(--uo-border-accent-dark);
 			}
 		}
-
-		.content-box {
-			display: flex;
-			flex-direction: column;
-			flex: 2;
-			padding: 18px;
-			overflow-y: auto;
-
-			border-top: 2px solid var(--uo-bg-accent);
-		}
 	}
 
-	// TODO Move this to a general section
-	// or reimplement for back side forms
-	.uo.item {
-		.content-box {
-			.header-box {
-				display: flex;
-				flex-direction: row;
-				margin-bottom: 12px;
-				align-items: stretch;
+	.uo.item .content-box {
+		display: flex;
+		flex-direction: column;
 
-				.separator {
-					padding: 4px;
-					min-width: 18px;
-					text-align: center;
-				}
-			}
+		flex: 2;
+		padding: 18px;
+		overflow-y: auto;
 
-			.editor-box {
-				flex: 1;
-				min-height: 14em;
-			}
+		gap: var(--uo-space-lg);
+		border-top: 2px solid var(--uo-bg-accent);
 
-			.editor-box .editor {
-				width: 100%;
-				height: 100%;
-			}
+		.editor-box {
+			flex: 1;
+			min-height: 14em;
+		}
+
+		.editor-box .editor {
+			width: 100%;
+			height: 100%;
 		}
 	}
 
 	.uo.item.minimized {
 		min-width: 0px;
 		min-height: 0px;
+	}
+}
+
+@layer system {
+	.uo.item .scroll {
+		flex: 1;
+		overflow-x: hidden;
+		overflow-y: scroll;
+	}
+
+	.uo.item legend {
+		width: 100%;
+		min-height: var(--uo-space-xl);
+
+		color: var(--uo-text-accent);
+		font-size: var(--dh-font-size-sm);
+		font-weight: var(--dh-font-weight-semibold);
+
+		padding-inline: 0;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+	}
+
+	.uo.item .flex {
+		flex: 1;
+	}
+
+	.uo.item .grid {
+		display: grid;
+		row-gap: var(--uo-space-lg);
+		column-gap: var(--uo-space-md);
+		grid-template-columns: repeat(6, 1fr);
+
+		.row {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: var(--uo-space-md);
+		}
+
+		.flex {
+			display: flex;
+		}
+
+		.center {
+			text-align: center;
+		}
+
+		span {
+			overflow: hidden;
+			text-wrap: nowrap;
+
+			align-self: center;
+			justify-self: stretch;
+		}
+
+		label {
+			align-self: center;
+			justify-self: stretch;
+		}
+
+		.col-1-1 {
+			grid-column: 1 / span 1;
+			justify-self: stretch;
+		}
+
+		.col-1-2 {
+			grid-column: 1 / span 2;
+			justify-self: stretch;
+		}
+
+		.col-1-3 {
+			grid-column: 1 / span 3;
+			justify-self: stretch;
+		}
+
+		.col-1-4 {
+			grid-column: 1 / span 4;
+			justify-self: stretch;
+		}
+
+		.col-1-5 {
+			grid-column: 1 / span 5;
+			justify-self: stretch;
+		}
+
+		.col-2-3 {
+			grid-column: 2 / span 3;
+			justify-self: stretch;
+		}
+
+		.col-2-5 {
+			grid-column: 2 / span 5;
+			justify-self: stretch;
+		}
+
+		.col-3-4 {
+			grid-column: 3 / span 4;
+			justify-self: stretch;
+		}
+
+		.col-4-1 {
+			grid-column: 4 / span 1;
+			justify-self: stretch;
+		}
+
+		.col-4-2 {
+			grid-column: 4 / span 2;
+			justify-self: stretch;
+		}
+
+		.col-5-1 {
+			grid-column: 5 / span 1;
+			justify-self: stretch;
+		}
+
+		.col-5-2 {
+			grid-column: 5 / span 2;
+			justify-self: stretch;
+		}
+
+		.col-6-1 {
+			grid-column: 6 / span 1;
+			justify-self: stretch;
+		}
+
+		.col-flex {
+			grid-column: 1 / span 6;
+			justify-self: stretch;
+		}
+
+		.col-left {
+			grid-column: 1 / span 3;
+			justify-self: stretch;
+		}
+
+		.col-right {
+			grid-column: 4 / span 3;
+			justify-self: stretch;
+		}
+
+		.col-left-flex {
+			grid-column: 1 / span 4;
+			justify-self: stretch;
+		}
+
+		.col-right-flex {
+			grid-column: 3 / span 4;
+			justify-self: stretch;
+		}
 	}
 }

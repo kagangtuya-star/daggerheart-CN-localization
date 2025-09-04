@@ -1,0 +1,29 @@
+<div class="content-box">
+	{{!-- Details Section --}}
+	<div class="grid">
+		<input
+			type="text"
+			class="col-left"
+			name="system.category"
+			value="{{system.category}}"
+			placeholder="{{localize 'DH.Category'}}" />
+
+		<input
+			type="text"
+			class="col-right"
+			name="system.tier"
+			value="{{system.rarity}}"
+			placeholder="{{localize 'DH.Rarity'}}" />
+	</div>
+	{{!-- Description Section --}}
+	<div class="editor-box">
+		<prose-mirror
+			button="true"
+			toggled="false"
+			editable="{{editable}}"
+			name="system.description"
+			value="{{system.description}}">
+			{{{description}}}
+		</prose-mirror>
+	</div>
+</div>

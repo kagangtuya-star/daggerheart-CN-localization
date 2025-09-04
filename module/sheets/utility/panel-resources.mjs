@@ -2,6 +2,7 @@
 export class ResourcesPanel {
 	_id = null;
 	_sheet = null;
+	_onSave = null;
 
 	_list = [];
 	_state = {};
@@ -48,22 +49,6 @@ export class ResourcesPanel {
 		};
 	}
 
-	async open() {
-		let elm = document.getElementById(`panel-menu-${this._id}`);
-		if (elm !== null) elm.classList.add('hide');
-		elm = document.getElementById(`tracker-panel-${this._id}`);
-		if (elm !== null) elm.classList.add('show');
-		this._state.display = 'flex';
-	}
-
-	async close() {
-		let elm = document.getElementById(`panel-menu-${this._id}`);
-		if (elm !== null) elm.classList.remove('hide');
-		elm = document.getElementById(`tracker-panel-${this._id}`);
-		if (elm !== null) elm.classList.remove('show');
-		this._state.display = 'none';
-	}
-
 	async create() {
 		const resource = {
 			id: this._state.next.id,
@@ -78,9 +63,8 @@ export class ResourcesPanel {
 		await this._onSave(this._list);
 		this._state.next = this._default;
 
-		// Grab the focus of the name input to create new elements
-		const overlay = document.getElementById(`panel-resources-${this._id}`);
-		overlay.querySelector('.ress-next-name').focus();
+		// Refocus an input element
+		this._focusInput();
 	}
 
 	async delete(index) {
@@ -93,9 +77,8 @@ export class ResourcesPanel {
 		await this._sheet.render();
 		await this._onSave(this._list);
 
-		// Grab the focus of the name input to create new elements
-		const overlay = document.getElementById(`panel-resources-${this._id}`);
-		overlay.querySelector('.ress-next-name').focus();
+		// Refocus an input element
+		this._focusInput();
 	}
 
 	async increase(index) {

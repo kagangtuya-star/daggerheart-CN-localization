@@ -1,0 +1,90 @@
+/* Application V2 - Select options element */
+@layer system {
+	.select {
+		display: flex;
+		position: relative;
+
+		flex: 1;
+		width: 100%;
+		height: var(--uo-size-md);
+		min-height: var(--uo-size-md);
+
+		border-radius: var(--uo-border-radius);
+		border: 1px solid var(--uo-border-input-dark);
+		background-color: var(--uo-bg-input);
+
+		font-size: var(--uo-font-size-sm);
+		letter-spacing: 0.5px;
+		color: var(--uo-text);
+
+		transition: var(--uo-transition-fast);
+
+		&:hover {
+			border: 1px solid var(--uo-border-invisible);
+			background: var(--uo-bg-input-focus);
+		}
+
+		&:focus,
+		&:active {
+			border: 1px solid var(--uo-border-darker);
+			background: var(--uo-bg-input-focus);
+		}
+	}
+
+	.select .selected {
+		flex: 1;
+		width: 100%;
+		cursor: pointer;
+		padding: 4px 10px;
+		padding-top: 6px;
+		text-transform: capitalize;
+	}
+
+	.select .options.show {
+		height: auto;
+		opacity: 100%;
+		pointer-events: all;
+	}
+
+	.select .options {
+		display: flex;
+		position: absolute;
+		flex-direction: column;
+
+		top: 32px;
+		left: 0;
+		right: 0;
+
+		width: 100%;
+
+		height: 0px;
+		opacity: 0%;
+		pointer-events: none;
+		transition: var(--uo-transition-fast);
+
+		margin: 0;
+		padding: 0;
+		z-index: 999;
+
+		list-style-type: none;
+		text-transform: capitalize;
+
+		border-radius: var(--uo-border-radius);
+		border: 1px solid var(--uo-border-input-dark);
+
+		backdrop-filter: var(--uo-minimal-blur);
+		background-color: var(--uo-bg-overlay);
+
+		box-shadow: var(--uo-node-item-shadow);
+
+		li {
+			cursor: pointer;
+			padding: 4px 10px;
+			background-color: var(--uo-bg-overlay);
+		}
+
+		li:hover {
+			background-color: var(--uo-bg-input);
+		}
+	}
+}

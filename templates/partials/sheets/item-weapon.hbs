@@ -1,0 +1,46 @@
+<div class="content-box">
+	{{!-- Details Section --}}
+	<div class="grid">
+		<input
+			type="text"
+			class="col-left"
+			name="system.category"
+			value="{{system.category}}"
+			placeholder="{{localize 'DH.Category'}}" />
+		<input
+			type="text"
+			class="col-right"
+			name="system.tier"
+			value="{{system.tier}}"
+			placeholder="{{localize 'DH.Tier'}}" />
+		<div class="col-left row">
+			<label>{{localize "DH.WeaponTrait"}}</label>
+			{{> select traitOptions }}
+		</div>
+		<div class="col-right row">
+			<label>{{localize "DH.WeaponRange"}}</label>
+			{{> select rangeOptions }}
+		</div>
+		<div class="col-left row">
+			<label>{{localize "DH.Damage"}}</label>
+			{{> select damageOptions }}
+		</div>
+		<div class="col-right row">
+			<div class="btn-edit-damage" data-action="edit-damage">
+				{{#if system.damage.value}}{{system.damage.value}}{{else}}{{#if system.damage.baseValue}}
+				{{system.damage.baseValue}}{{else}}{{localize "DH.ClickToDefine"}}{{/if}}{{/if}}
+			</div>
+		</div>
+	</div>
+	{{!-- Description Section --}}
+	<div class="editor-box">
+		<prose-mirror
+			button="true"
+			toggled="false"
+			editable="{{editable}}"
+			name="system.description"
+			value="{{system.description}}">
+			{{{description}}}
+		</prose-mirror>
+	</div>
+</div>

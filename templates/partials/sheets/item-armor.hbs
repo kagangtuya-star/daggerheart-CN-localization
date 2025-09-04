@@ -1,0 +1,57 @@
+<div class="content-box">
+	{{!-- Details Section --}}
+	<div class="grid">
+		<input
+			type="text"
+			class="col-left"
+			name="system.category"
+			value="{{system.category}}"
+			placeholder="{{localize 'DH.Category'}}" />
+
+		<input
+			type="text"
+			class="col-right"
+			name="system.tier"
+			value="{{system.tier}}"
+			placeholder="{{localize 'DH.Tier'}}" />
+		<label class="col-left">{{localize "DH.BaseScore"}}</label>
+		<input
+			min="0"
+			type="number"
+			placeholder="0"
+			name="system.baseScore"
+			class="col-right text-center"
+			value="{{system.baseScore}}" />
+		<label class="col-left">{{localize "DH.BaseThresholds"}}</label>
+		<div class="col-right row">
+			<div class="in-dual">
+				<input
+					min="0"
+					type="number"
+					placeholder="0"
+					class="threshold-input"
+					name="system.baseThresholds.major"
+					value="{{system.baseThresholds.major}}" />
+				<span class="separator">/</span>
+				<input
+					min="0"
+					type="number"
+					placeholder="0"
+					class="threshold-input"
+					name="system.baseThresholds.severe"
+					value="{{system.baseThresholds.severe}}" />
+			</div>
+		</div>
+	</div>
+	{{!-- Description Section --}}
+	<div class="editor-box">
+		<prose-mirror
+			button="true"
+			toggled="false"
+			editable="{{editable}}"
+			name="system.description"
+			value="{{system.description}}">
+			{{{description}}}
+		</prose-mirror>
+	</div>
+</div>

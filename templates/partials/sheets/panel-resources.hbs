@@ -1,4 +1,4 @@
-<div id="panel-resources-{{id}}" class="panel-content tracker{{#if panels.state.showPanel}} show{{/if}}">
+<div id="panel-resources-{{id}}" class="panel-content tracker{{#if panels.visible.resources}} show{{/if}}">
 		<div class="header">
 			<span>Resource Trackers</span>
 			<button data-action="panel-close">
@@ -6,73 +6,68 @@
 			</button>
 		</div>
 		<div class="content">
-			<fieldset class="form-section">
-				<legend>New Resource</legend>
-				<div class="field">
-					<label>Name</label>
+			<legend class="col-flex">New Resource</legend>
+			<div class="grid">
+				{{!-- 1 / 5 --}}
+				<label class="col-1-1">Name</label>
+				<input
+					type="text"
+					name="ress-next-name"
+					placeholder="Resource name"
+					class="ress-next-name col-2-5"
+					value="{{resources.next.name}}" />
+				{{!-- 1 / 3 / 2 --}}
+				<label class="col-1-1">Value</label>
+				<div class="in-dual col-2-3">
 					<input
-						type="text"
-						name="ress-next-name"
-						class="ress-next-name"
-						placeholder="Resource name"
-						value="{{resources.next.name}}" />
+						min="0"
+						type="number"
+						placeholder="0"
+						name="ress-next-value"
+						value="{{resources.next.value}}" />
+					<span class="separator">/</span>
+					<input
+						min="1"
+						type="number"
+						placeholder="Max"
+						name="ress-next-max"
+						value="{{resources.next.max}}" />
 				</div>
-				<div class="field">
-					<div class="field box-2x">
-						<label>Value</label>
-						<div class="min-max">
-							<input
-								min="0"
-								type="number"
-								placeholder="0"
-								name="ress-next-value"
-								value="{{resources.next.value}}" />
-							<span class="value-separator">/</span>
-							<input
-								min="1"
-								type="number"
-								placeholder="Max"
-								name="ress-next-max"
-								value="{{resources.next.max}}" />
-						</div>
+				<div class="wrap-color col-5-2">
+					<input
+						type="color"
+						name="ress-next-color"
+						value="{{resources.next.color}}" />
+				</div>
+				{{!-- 6 --}}
+				<button class="col-flex" data-action="resources-create">
+					<i class="fas fa-plus"></i>
+					Add Resource
+				</button>
+			</div>
+			<div class="spacer"><hr /></div>
+			<legend>Existing Resources</legend>
+			<div class="scroll">
+				<div class="grid">
+					{{#each resources.list}}
+					{{!-- 1 / 3 / 1 / 1 --}}
+					<div class="col-1-1 row">
+						<div class="color-dot" style="background-color: {{this.color}}"></div>
 					</div>
-					<div class="field box-1x">
-						<label>Color</label>
-						<div class="wrap-color">
-							<input
-								type="color"
-								name="ress-next-color"
-								value="{{resources.next.color}}" />
-						</div>
+					<span class="col-2-3">{{this.name}}</span>
+					<span class="col-5-1 center">{{this.value}} / {{this.max}}</span>
+					<div class="col-6-1">
+						<button
+							class="button-dot"
+							data-index="{{@index}}"
+							data-action="resources-delete">
+							<i class="fas fa-times no-click"></i>
+						</button>
 					</div>
+					{{!-- </div> --}}
+					{{/each}}
 				</div>
-				<div class="field">
-					<button data-action="resources-create">
-						<i class="fas fa-plus"></i>
-						Add Resource
-					</button>
-				</div>
-			</fieldset>
-			<hr />
-			<fieldset class="list-section">
-				<legend>Existing Resources</legend>
-				{{#each resources.list}}
-				<div class="field" data-tracker-id="${tracker.id}">
-					<div class="row box-2x">
-						<div class="row">
-							<div class="color" style="background-color: {{this.color}}"></div>
-							<span>{{this.name}}</span>
-						</div>
-						<span class="end">{{this.value}} / {{this.max}}</span>
-					</div>
-					<button
-						data-index="{{@index}}"
-						data-action="resources-delete">
-						<i class="fas fa-times no-click"></i>
-					</button>
-				</div>
-				{{/each}}
-			</fieldset>
+			</div>
 		</div>
 	</div>
 </div>

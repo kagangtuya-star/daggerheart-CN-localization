@@ -168,12 +168,12 @@
 	"DAGGERHEART.SETTINGS.DiceCustomization.previewFormError": "Invalid form data for dice preview. Please check your settings.",
 	"DAGGERHEART.SETTINGS.DiceCustomization.validationError": "Settings validation failed. Please check your input values.",
 	"DAGGERHEART.SETTINGS.DiceCustomization.permissionError": "You don't have permission to modify dice customization settings.",
-	
+
 	"DAGGERHEART.SETTINGS.HoverDistance.tooltipPosition": "Tooltip Position",
 	"DAGGERHEART.SETTINGS.HoverDistance.tooltipPositionAbove": "Above Token",
 	"DAGGERHEART.SETTINGS.HoverDistance.tooltipPositionBelow": "Below Token",
 	"DAGGERHEART.SETTINGS.HoverDistance.tooltipPositionHint": "Choose whether hover distance tooltips appear above or below tokens",
-	
+
 	"SIMPLE.DefineTemplate": "Define as Template",
 	"SIMPLE.UnsetTemplate": "Unset Template",
 	"SIMPLE.AttributeKey": "Attribute Key",
@@ -184,6 +184,8 @@
 	"SIMPLE.DeleteGroupContent": "Do you wish to delete this group? This will delete the following group and all attributes included in it: ",
 	"SIMPLE.Create": "Create",
 	"SIMPLE.New": "New",
+
+	"DH.ClickToDefine": "Click to Define",
 	"DH.Notify.NoHopeForExperience": "Not enough hope to use your experience; the modifier was not applied.",
 	"DH.Level": "Level",
 	"DH.Prof": "Prof.",
@@ -306,8 +308,10 @@
 	"DH.Close": "Close",
 	"DH.Far": "Far",
 	"DH.VeryFar": "Very Far",
-	"DH.BaseThresholds": "Base Thresholds",
+	"DH.Score": "Score",
 	"DH.BaseScore": "Base Score",
+	"DH.Thresholds": "Thresholds",
+	"DH.BaseThresholds": "Base Thresholds",
 	"DH.MaxTwoWeapons": "You can only equip two weapons at a time.",
 	"DH.InvalidWeapon": "Invalid weapon",
 	"DH.Tier1": "Tier 1 (Level 1)",

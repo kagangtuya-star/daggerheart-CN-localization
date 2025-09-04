@@ -297,15 +297,15 @@ Hooks.once('init', async function () {
 		makeDefault: true,
 		label: 'SHEET.Item.default',
 	});
-	foundry.documents.collections.Items.registerSheet('daggerheart-unofficial', SimpleWeaponSheet, {
-		types: ['weapon'],
-		makeDefault: true,
-		label: 'SHEET.Item.weapon',
-	});
-	foundry.documents.collections.Items.registerSheet('daggerheart-unofficial', SimpleArmorSheet, {
+	foundry.documents.collections.Items.registerSheet('daggerheart-unofficial', itemSheet.armor, {
 		types: ['armor'],
 		makeDefault: true,
 		label: 'SHEET.Item.armor',
+	});
+	foundry.documents.collections.Items.registerSheet('daggerheart-unofficial', itemSheet.weapon, {
+		types: ['weapon'],
+		makeDefault: true,
+		label: 'SHEET.Item.weapon',
 	});
 	// Keep these here as a fall back and test case while we move a head to depricate these items
 	foundry.documents.collections.Items.registerSheet('daggerheart-unofficial', SimpleItemSheet, {
